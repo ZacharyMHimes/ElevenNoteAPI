@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElevenNote.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221214224901_InitialCreate")]
+    [Migration("20221217215857_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -41,11 +41,9 @@ namespace ElevenNote.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")

@@ -17,6 +17,7 @@ namespace ElevenNote.Models.User
         public string Username {get; set;}
         [Required]
         [MinLength(4)]
+        [MaxLength(12)]
         public string Password {get; set;}
         [Compare(nameof(Password))]
         public string ConfirmPassword {get; set;}
