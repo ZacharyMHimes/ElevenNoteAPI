@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Reflection.Metadata;
 using System.Security.Claims;
 using System;
@@ -55,6 +56,21 @@ namespace ElevenNote.Services.Note
                 .ToListAsync();
             
             return notes;
-        }    
+        }       
+        public async Task<NoteDetail> GetNoteIdAsync(int noteId)
+        {
+            //Find the first note that has the given Id and an OwnerId that match the requesting userId
+            var noteEntity = await _dbContext.Notes.FirstOrDefaultAsync( e =>
+            e.Id == noteId && e.OwnerId == _userId);
+            //If noteEntity is null then return null, otherwise initialize and return a new NoteDetail,
+            return noteEntity is null ? null : new NoteDetail
+            {
+                Id = noteEntity.Id,
+                Title = noteEntity.Title,
+                Content = noteEntity.Content,
+                CreatedUtc = noteEntity.CreatedUtc,
+                ModifiedUtc = noteEntity.ModifiedUtc
+            };
+        }
     }
 }
